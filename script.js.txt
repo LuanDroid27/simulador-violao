@@ -1,6 +1,7 @@
 async function tocarMusica() {
     const notasInput = document.getElementById('inputNotas').value;
     const notas = notasInput.split(',').map(nota => nota.trim().toUpperCase());
+    const noteDisplay = document.getElementById('noteDisplay');
 
     const violao = new Tone.Sampler({
         "C4": "https://tonejs.github.io/audio/salamander/C4.mp3",
@@ -12,13 +13,30 @@ async function tocarMusica() {
         "B4": "https://tonejs.github.io/audio/salamander/B4.mp3",
     }).toDestination();
 
-    await Tone.start(); // Necessário para ativar o áudio em alguns navegadores
+    await Tone.start();
     let delay = 0;
 
-    notas.forEach(nota => {
+    notas.forEach((nota, index) => {
         if (nota) {
-            violao.triggerAttackRelease(nota + "4", "8n", Tone.now() + delay);
-            delay += 0.5; // Tempo entre as notas
+            // Tocar a nota e acionar o efeito de corda
+            setTimeout(() => {
+                tocarNota(nota, violao);
+                animarCorda(index % 6 + 1);  // Alterna entre as 6 cordas
+                noteDisplay.innerText = nota; // Exibe a nota atual
+            }, delay * 1000);
+            delay += 0.5; // Intervalo entre as notas
         }
     });
+}
+
+function tocarNota(nota, violao) {
+    violao.triggerAttackRelease(nota + "4", "8n");
+}
+
+function animarCorda(cordaIndex) {
+    const corda = document.getElementById(`string${cordaIndex}`);
+    corda.style.backgroundColor = "yellow"; // Destaca a corda tocada
+    setTimeout(() => {
+        corda.style.backgroundColor = "#8b4513"; // Retorna à cor original
+    }, 200);
 }
