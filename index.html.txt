@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Violão</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f7f7f7;
+        }
+        #app {
+            margin-top: 50px;
+        }
+        input, button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Simulador de Violão</h1>
+        <p>Insira as notas (exemplo: C, D, E, F, G, A, B):</p>
+        <input type="text" id="inputNotas" placeholder="Digite as notas separadas por vírgula">
+        <button onclick="tocarMusica()">Tocar Música</button>
+    </div>
+    
+    <!-- Inclui Tone.js via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.36/Tone.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
