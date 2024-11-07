@@ -11,13 +11,45 @@
             background-color: #f7f7f7;
         }
         #app {
-            margin-top: 50px;
+            margin-top: 20px;
         }
         input, button {
             font-size: 16px;
             padding: 10px;
             margin: 10px;
         }
+        .guitar {
+            margin: 0 auto;
+            width: 300px;
+            height: 500px;
+            position: relative;
+            background-color: #f0e68c;
+            border-radius: 50% 50% 10px 10px;
+            border: 5px solid #8b4513;
+        }
+        .string {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background-color: #8b4513;
+            transition: background-color 0.2s;
+        }
+        .note {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #333;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        /* Posição das cordas */
+        .string1 { top: 50px; }
+        .string2 { top: 100px; }
+        .string3 { top: 150px; }
+        .string4 { top: 200px; }
+        .string5 { top: 250px; }
+        .string6 { top: 300px; }
     </style>
 </head>
 <body>
@@ -26,6 +58,17 @@
         <p>Insira as notas (exemplo: C, D, E, F, G, A, B):</p>
         <input type="text" id="inputNotas" placeholder="Digite as notas separadas por vírgula">
         <button onclick="tocarMusica()">Tocar Música</button>
+
+        <!-- Violão com cordas -->
+        <div class="guitar" id="guitar">
+            <div class="string string1" id="string1"></div>
+            <div class="string string2" id="string2"></div>
+            <div class="string string3" id="string3"></div>
+            <div class="string string4" id="string4"></div>
+            <div class="string string5" id="string5"></div>
+            <div class="string string6" id="string6"></div>
+            <div class="note" id="noteDisplay"></div>
+        </div>
     </div>
     
     <!-- Inclui Tone.js via CDN -->
